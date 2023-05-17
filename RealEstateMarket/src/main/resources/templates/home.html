@@ -1,10 +1,17 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-Hello
+    <h1>RealEstate</h1><hr>
+    <table>
+        <tr th:each="b : ${buildings}">
+            <td th:text="${b.title}"> </td>
+            <td th:text="${b.price}"> </td>
+        </tr>
+    </table>
 </body>
 </html>
