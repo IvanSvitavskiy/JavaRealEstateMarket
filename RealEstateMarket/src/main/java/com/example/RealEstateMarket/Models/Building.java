@@ -1,9 +1,14 @@
 package com.example.RealEstateMarket.Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 public class Building {
+    @Getter
+    @Setter
+    private long id;
     @Getter
     @Setter
     private String title;
