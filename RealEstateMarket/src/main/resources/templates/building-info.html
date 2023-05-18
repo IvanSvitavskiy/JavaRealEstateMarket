@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>RealEstate</h1>
+<h4>Инфо о товаре</h4>
+<b>Название объявления: </b><a th:text="${building.title}"></a><br>
+<b>Описание: </b><a th:text="${building.description}"></a><br>
+<b>Цена: </b><a th:text="${building.price}"></a><br>
+<b>Город: </b><a th:text="${building.city}"></a><br>
+<b>Адрес: </b><a th:text="${building.address}"></a><br>
+<b>Владелец: </b><a th:text="${building.owner}"></a><br>
+<form th:action="'/building/delete/' + ${building.id}" method="post">
+    <input type="submit" value="Удалить объявление"/>
+</form>
+</body>
+</html>
