@@ -8,6 +8,11 @@
 <body>
 <h1>RealEstate</h1>
 <h4>Инфо о товаре</h4>
+<table>
+    <tr th:each="img : ${images}">
+        <img th:src="'/images/' + ${img.id}" height="150px">
+    </tr>
+</table>
 <b>Название объявления: </b><a th:text="${building.title}"></a><br>
 <b>Описание: </b><a th:text="${building.description}"></a><br>
 <b>Цена: </b><a th:text="${building.price}"></a><br>

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -49,10 +50,11 @@ public class Image {
 
     @Getter
     @Setter
+    @Column(name = "bytes", columnDefinition = "LONGBLOB")
     @Lob
     private byte[] bytes;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @Getter
     @Setter
     private Building building;
