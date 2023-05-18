@@ -1,39 +1,37 @@
 package com.example.RealEstateMarket.Services;
 
 import com.example.RealEstateMarket.Models.Building;
+import com.example.RealEstateMarket.Repo.BuildingRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class BuildingService {
-    private List<Building> buildings = new ArrayList<>();
+    private final BuildingRepository buildingRepository;
 
-    public List<Building> getAllBuildings(){
-        return buildings;
+    public List<Building> getAllBuildings(String title){
+        if(title != null){
+            return buildingRepository.findByTitle(title);
+        }
+        return buildingRepository.findAll();
     }
 
     public void addBuilding(Building b){
-        b.setId(++cur_id);
-        buildings.add(b);
+        log.info("Saving {}", b);
+        buildingRepository.save(b);
     }
 
     public void delBuilding(Long id){
-        for(Building b: buildings){
-            if(b.getId().equals(id)){
-                buildings.remove(b);
-                break;
-            }
-        }
+        buildingRepository.deleteById(id);
     }
 
     public Building getBuilding(Long id){
-        for(Building b: buildings){
-            if(b.getId().equals(id)){
-                return b;
-            }
-        }
-        return null;
+        return buildingRepository.findById(id).orElse(null);
     }
 }
