@@ -21,18 +21,18 @@ public class MainController {
     }
 
     @GetMapping("/building/{id}")
-    public String buildingInformation(@PathVariable long id, Model model){
+    public String buildingInformation(@PathVariable Long id, Model model){
         model.addAttribute("building", buildingService.getBuilding(id));
         return "building-info";
     }
-    @PostMapping
+    @PostMapping("/building/create")
     public String addBuilding(Building building){
         buildingService.addBuilding(building);
         return "redirect:/";
     }
 
     @PostMapping("/building/delete/{id}")
-    public String delBuilding(@PathVariable long id){
+    public String delBuilding(@PathVariable Long id){
         buildingService.delBuilding(id);
         return "redirect:/";
     }

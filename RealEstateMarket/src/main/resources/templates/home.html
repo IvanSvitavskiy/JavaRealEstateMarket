@@ -11,8 +11,8 @@
 <table>
     <tr th:each="b : ${buildings}">
         <td th:text="${b.title}"></td>
-        <td th:text="${b.price}$"></td>
-        <td><a href="/building/${b.id}">Подробнее...</a></td>
+        <td th:text="${b.price}">$</td>
+        <td><a th:href="'/building/' + ${b.id}">Подробнее...</a></td>
     </tr>
 </table>
 <h3>Создать новый товар</h3>
@@ -23,7 +23,7 @@
     Город: <input type="text" name="city"/><br><br>
     Адрес: <input type="text" name="address"/><br><br>
     Владелец: <input type="text" name="owner"/><br><br>
-    <input type="submit" value="Добавить товар"/>
+    <input type="submit" value="Добавить объявление"/>
 </form>
 </body>
 </html>

@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Building {
     @Getter
     @Setter
-    private long id;
+    private Long id;
     @Getter
     @Setter
     private String title;
@@ -27,4 +27,5 @@ public class Building {
     @Getter
     @Setter
     private String owner;
+
 }
