@@ -10,30 +10,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @AllArgsConstructor
 public class MainController {
     private final BuildingService buildingService;
+
     @GetMapping("/")
-    public String home(@RequestParam(name = "title", required = false) String title, Model model){
+    public String home(@RequestParam(name = "title", required = false) String title, Model model) {
         model.addAttribute("buildings", buildingService.getAllBuildings(title));
         return "home";
     }
 
     @GetMapping("/building/{id}")
-    public String buildingInformation(@PathVariable Long id, Model model){
+    public String buildingInformation(@PathVariable Long id, Model model) {
         model.addAttribute("building", buildingService.getBuilding(id));
         return "building-info";
     }
+
     @PostMapping("/building/create")
-    public String addBuilding(Building building){
-        buildingService.addBuilding(building);
+    public String addBuilding(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
+                              @RequestParam("file3") MultipartFile file3, Building building) throws IOException {
+        buildingService.addBuilding(building, file1, file2, file3);
         return "redirect:/";
     }
 
     @PostMapping("/building/delete/{id}")
-    public String delBuilding(@PathVariable Long id){
+    public String delBuilding(@PathVariable Long id) {
         buildingService.delBuilding(id);
         return "redirect:/";
     }

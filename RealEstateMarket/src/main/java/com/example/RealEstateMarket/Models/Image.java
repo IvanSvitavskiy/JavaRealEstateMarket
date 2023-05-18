@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -42,7 +45,7 @@ public class Image {
     @Getter
     @Setter
     @Column(name = "prevIm")
-    private boolean prevIm;
+    private boolean prevIm = false;
 
     @Getter
     @Setter
@@ -50,5 +53,17 @@ public class Image {
     private byte[] bytes;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @Getter
+    @Setter
     private Building building;
+
+    public static Image toImage(MultipartFile file) throws IOException {
+        Image image = new Image();
+        image.setName(file.getName());
+        image.setFileName(file.getOriginalFilename());
+        image.setType(file.getContentType());
+        image.setSize(file.getSize());
+        image.setBytes(file.getBytes());
+        return image;
+    }
 }

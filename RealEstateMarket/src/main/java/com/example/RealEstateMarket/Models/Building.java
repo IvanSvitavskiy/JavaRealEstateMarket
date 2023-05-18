@@ -54,8 +54,12 @@ public class Building {
     private String owner;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "building")
+    @Getter
+    @Setter
     private List<Image> images = new ArrayList<>();
 
+    @Getter
+    @Setter
     private Long prevImageId;
 
     private LocalDateTime birthDate;
@@ -63,5 +67,10 @@ public class Building {
     @PrePersist
     private void birth() {
         birthDate = LocalDateTime.now();
+    }
+
+    public void connectImageToBuilding(Image image) {
+        image.setBuilding(this);
+        images.add(image);
     }
 }
