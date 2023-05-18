@@ -6,6 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -48,4 +53,15 @@ public class Building {
     @Column(name = "owner")
     private String owner;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "building")
+    private List<Image> images = new ArrayList<>();
+
+    private Long prevImageId;
+
+    private LocalDateTime birthDate;
+
+    @PrePersist
+    private void birth() {
+        birthDate = LocalDateTime.now();
+    }
 }
