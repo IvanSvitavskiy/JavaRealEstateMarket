@@ -11,7 +11,7 @@ public class BuildingService {
     private List<Building> buildings = new ArrayList<>();
     private long cur_id = 0;
 
-    {buildings.add(new Building(++cur_id, "first", "dadsa",4454, "tambov",  "oktgl"));}
+    {buildings.add(new Building(++cur_id, "first", "dadsa",4454, "tambov",  "oktgl", "ivan"));}
 
     public List<Building> getAllBuildings(){
         return buildings;
@@ -29,5 +29,14 @@ public class BuildingService {
                 break;
             }
         }
+    }
+
+    public Building getBuilding(long id){
+        for(Building b: buildings){
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        return null;
     }
 }

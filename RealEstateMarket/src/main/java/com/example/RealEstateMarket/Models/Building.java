@@ -24,5 +24,7 @@ public class Building {
     @Getter
     @Setter
     private String address;
-
+    @Getter
+    @Setter
+    private String owner;
 }
