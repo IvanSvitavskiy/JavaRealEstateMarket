@@ -9,14 +9,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
 public class MainController {
     private final BuildingService buildingService;
     @GetMapping("/")
-    public String home(Model model){
-        model.addAttribute("buildings", buildingService.getAllBuildings());
+    public String home(@RequestParam(name = "title", required = false) String title, Model model){
+        model.addAttribute("buildings", buildingService.getAllBuildings(title));
         return "home";
     }
 

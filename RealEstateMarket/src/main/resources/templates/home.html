@@ -7,7 +7,10 @@
 </head>
 <body>
 <h1>RealEstate</h1>
-<hr>
+<form action="/" method="get">
+    Поиск по названию объявления: <input type="text" name="title"><br>
+    <input type="submit" value="Поиск"/>
+</form>
 <table>
     <tr th:each="b : ${buildings}">
         <td th:text="${b.title}"></td>
@@ -18,7 +21,7 @@
 <h3>Создать новый товар</h3>
 <form action="/building/create" method="post">
     Название объявления: <input type="text" name="title"/><br><br>
-    Описание объявления: <input type="text" name="desc"/><br><br>
+    Описание объявления: <input type="text" name="description"/><br><br>
     Цена: <input type="number" name="price"/><br><br>
     Город: <input type="text" name="city"/><br><br>
     Адрес: <input type="text" name="address"/><br><br>

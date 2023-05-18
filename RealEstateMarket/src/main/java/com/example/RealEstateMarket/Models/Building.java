@@ -20,13 +20,13 @@ public class Building {
 
     @Getter
     @Setter
-    @Column(name = "id")
+    @Column(name = "title")
     private String title;
 
     @Getter
     @Setter
-    @Column(name = "desc", columnDefinition = "text")
-    private String desc;
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
 
     @Getter
     @Setter
