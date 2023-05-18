@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>RealEstate</title>
+</head>
+<body>
+<h1>RealEstate</h1><hr>
+<h4>Регистрация</h4>
+<form action="/registration" method="post">
+  Имя пользователя: <input type="text" name="name"><br><br>
+  Электронная почта: <input type="email" name="email"><br><br>
+  Номер телефона: <input type="text" name="phone"><br><br>
+  Пароль: <input type="password" name="password"><br><br>
+  <input th:value="${_csrf.token}" type="hidden" name="_csrf">
+  <input type="submit" value="Зарегистрироваться"/>
+</form>
+<span th:switch="${errorMessage}">
+  <h2 style="color: red" th:case="true">${errorMessage}</h2>
+</span>
+</body>
+</html>

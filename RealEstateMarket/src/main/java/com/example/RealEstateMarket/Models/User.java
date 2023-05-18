@@ -46,7 +46,6 @@ public class User implements UserDetails {
     @JoinColumn(name = "image_id")
     @Getter
     @Setter
-    @Column(name = "photo")
     private Image photo;
 
     @Getter
