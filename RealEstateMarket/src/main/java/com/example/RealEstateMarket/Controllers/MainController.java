@@ -34,6 +34,7 @@ public class MainController {
         model.addAttribute("building", b);
         model.addAttribute("images", b.getImages());
         model.addAttribute("user", buildingService.getUserByPrincipal(principal));
+        model.addAttribute("authorProduct", b.getUser());
         return "building-info";
     }
 
@@ -51,11 +52,11 @@ public class MainController {
         return "redirect:/";
     }
 
-    @GetMapping("/my/products")
+    @GetMapping("/my/buildings")
     public String userBuildings(Principal principal, Model model) {
         User user = buildingService.getUserByPrincipal(principal);
         model.addAttribute("user", user);
-        model.addAttribute("products", user.getBuildings());
-        return "my-products";
+        model.addAttribute("buildings", user.getBuildings());
+        return "my-buildings";
     }
 }

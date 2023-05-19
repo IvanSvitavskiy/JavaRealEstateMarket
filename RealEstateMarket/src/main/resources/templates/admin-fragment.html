@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<body>
+<h1 style="text-align: center">Панель администратора</h1><hr>
+<table class="table table-hover table-dark">
+  <tr>
+    <th scope="col">Email</th>
+    <th scope="col">Номер телефона</th>
+    <th scope="col">Активность</th>
+    <th scope="col">Роли</th>
+    <th scope="col">Бан</th>
+    <th scope="col">Подробная информация</th>
+  </tr>
+  <tr th:each="u : ${users}">
+    <th th:text="${u.email}"></th>
+    <th th:text="${u.phone}"></th>
+    <th th:text="${u.active}"></th>
+    <th th:text="${u.roles}"></th>
+    <th>
+      <form th:if="${u.active}" th:action="'/admin/user/ban/' + ${u.id}" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="submit" value="Бан">
+      </form>
+      <form th:unless="${u.active}" th:action="'/admin/user/ban/' + ${u.id}" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="submit" value="Разбан">
+      </form>
+    </th>
+    <th><a th:href="'/user/' + ${u.id}">Профиль</a></th>
+  </tr>
+</table>
+
+</body>
+</html>

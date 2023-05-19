@@ -1,30 +1,30 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+          crossorigin="anonymous">
+
+    <title>RealEstate</title>
 </head>
 <body>
-<h1>RealEstate</h1>
-<h4>Инфо о товаре</h4>
-<table>
-    <tr th:each="img : ${images}">
-        <img th:src="'/images/' + ${img.id}" height="300px">
-    </tr>
-</table>
-<b>Название объявления: </b><a th:text="${building.title}"></a><br>
-<b>Описание: </b><a th:text="${building.description}"></a><br>
-<b>Цена: </b><a th:text="${building.price}"></a><br>
-<b>Город: </b><a th:text="${building.city}"></a><br>
-<b>Адрес: </b><a th:text="${building.address}"></a><br>
-<b>Владелец: </b><a th:href="'/user/' + ${building.user.id}" th:text="${building.user.name}"></a><br>
-<b>Контакты: </b><a th:text="${building.user.getPhone()}"></a><br>
-<div th:if="${building.user.getEmail().equals(user.email)} == true">
-    <form th:action="'/building/delete/' + ${building.id}" method="post">
-        <input type="submit" value="Удалить объявление"/>
-    </form>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+    </div>
+</nav>
+
+<div class="container mt-4" th:insert="~{building-info-fragment}">
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
 </body>
 </html>

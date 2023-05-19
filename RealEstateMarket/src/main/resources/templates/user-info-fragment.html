@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1 style="text-align: center">Информация о пользователе</h1>
+<hr>
+<div style="text-align: center">
+  <img src="https://catherineasquithgallery.com/uploads/posts/2021-02/1614531291_84-p-smailik-na-belom-fone-87.png"
+       style="border:2px solid black; border-radius: 20px" height="120">
+  <br>
+  <br>
+  <h2 th:text="${user.name}"></h2>
+  <br>
+  Номер телефона: <b th:text="${user.phone}"></b>
+</div>
+<br>
+<hr>
+<h1 style="text-align: center" th:text="'Объявления пользователя ' + ${user.name}"></h1>
+<br>
+<div class="card-columns" th:each="b : ${buildings}">
+  <a th:href="'/building/check/' + ${b.id}" class="building">
+    <div class="card text-white bg-dark my-3 building">
+      <img th:src="'/images/' + ${b.prevImageId}"
+           class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title" th:text="${b.title}"></h5>
+        <p class="card-text" th:text="${b.price} + '$'"></p>
+      </div>
+      <div class="card-footer" th:text="${b.user.name}">
+      </div>
+    </div>
+  </a>
+</div>
+</body>
+</html>

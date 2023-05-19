@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1 style="text-align: center">Мои товары</h1>
+<hr>
+<a class="btn btn-dark mt-3 mb-3" style="text-align: center; width: 100%"
+   data-toggle="collapse" href="#collapseExample" role="button"
+   aria-expanded="true" aria-controls="collapseExample">
+    Добавить новое объявление
+</a>
+<div class="collapse mb-3" id="collapseExample" style="">
+    <form action="/building/create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Название объявления</label> <input type="text" class="form-control" name="title">
+        </div>
+        <div class="form-group">
+            <label>Цена</label>
+            <div class="input-group mb-3">
+                <input type="number" class="form-control" name="price">
+                <div class="input-group-append">
+                    <span class="input-group-text">$</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Город</label>
+            <select name="city" class="form-control">
+                <option value="">Город не выбран</option>
+
+                <option value="Москва">Москва</option>
+                <option value="Архангельск">Архангельск</option>
+                <option value="Тамбов">Тамбов</option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Описание</label>
+            <textarea class="form-control" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Первая фотография к объявлению</label> <input type="file" name="file1">
+        </div>
+        <div class="form-group">
+            <label>Вторая фотография к объявлению</label> <input type="file" name="file2">
+        </div>
+        <div class="form-group">
+            <label>Третья фотография к объявлению</label> <input type="file" name="file3">
+        </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
+    </form>
+</div>
+<div class="card-columns" th:each="b : ${buildings}">
+    <a th:href="'/b/' + ${b.id}" class="building">
+        <div class="card text-white bg-dark my-3 building">
+            <div class="card-top">
+                <form th:action="'/building/delete/' + ${b.id}" method="post">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                    <button type="submit" class="btn btn-danger m-3">
+                        Удалить
+                    </button>
+                </form>
+            </div>
+            <img th:src="'/images/' + ${b.prevImageId}"
+                 class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${b.title}"></h5>
+                <p class="card-text" th:text="${b.price}">$</p>
+            </div>
+            <div class="card-footer" th:text="${b.city}">
+            </div>
+        </div>
+    </a>
+</div>
+</body>
+</html>

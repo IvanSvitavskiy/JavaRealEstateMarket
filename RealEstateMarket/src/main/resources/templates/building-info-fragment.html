@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<body>
+<div class="card-columns" th:each="image : ${images}">
+  <div class="card">
+    <a th:href="'/images/' + ${image.id}">
+      <img class="building" style="height: 300px; width: 400" th:src="'/images/' + ${image.id}">
+    </a>
+  </div>
+</div>
+<hr>
+<p><h1 style="text-align: center" th:text="${building.title} + ' | ' + ${building.price} + '$'"></h1></p>
+<p style="text-align: center" th:text="${building.description}"></p>
+<p style="text-align: center" th:text="'Номер телефона продавца: ' + ${authorProduct.phone}"></p>
+
+<hr>
+<p style="text-align: center">
+  <a th:href="'/user/' + ${authorProduct.id}">
+    <img src="https://catherineasquithgallery.com/uploads/posts/2021-02/1614531291_84-p-smailik-na-belom-fone-87.png"
+         alt="mdo" width="32" height="32" class="rounded-circle" th:text="${authorProduct.name}">
+  </a>
+</p>
+</body>
+</html>
