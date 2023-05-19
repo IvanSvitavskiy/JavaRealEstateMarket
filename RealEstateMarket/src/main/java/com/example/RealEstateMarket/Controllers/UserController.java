@@ -28,7 +28,7 @@ public class UserController {
     @PostMapping("/registration")
     public String createUser(User user, Model model) {
         if(!userService.createUser(user)){
-            model.addAttribute("errorMessage", "Этот email уже зан0ят!");
+            model.addAttribute("errorMessage", "Этот email уже занят!");
             return "registration";
         }
         userService.createUser(user);

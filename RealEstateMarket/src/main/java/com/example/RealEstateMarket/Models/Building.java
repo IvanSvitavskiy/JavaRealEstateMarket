@@ -48,11 +48,6 @@ public class Building {
     @Column(name = "address")
     private String address;
 
-    @Getter
-    @Setter
-    @Column(name = "owner")
-    private String owner;
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "building")
     @Getter
     @Setter
@@ -61,6 +56,12 @@ public class Building {
     @Getter
     @Setter
     private Long prevImageId;
+
+    @Getter
+    @Setter
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn
+    private User user;
 
     private LocalDateTime birthDate;
 
