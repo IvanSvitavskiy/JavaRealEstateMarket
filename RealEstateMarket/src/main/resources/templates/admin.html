@@ -13,7 +13,6 @@
         <th>Активность</th>
         <th>Роли</th>
         <th>Бан</th>
-        <th>Редактирование</th>
         <th>Подробная информация</th>
     </tr>
     <tr th:each="u : ${users}">
@@ -31,7 +30,6 @@
                 <input type="submit" value="Разбан">
             </form>
         </th>
-        <th><a th:href="'/admin/user/edit/' + ${u.id}">Редактировать</a></th>
         <th><a th:href="'/user/' + ${u.id}">Профиль</a></th>
     </tr>
 </table>
