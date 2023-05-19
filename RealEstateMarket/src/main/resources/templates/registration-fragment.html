@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1 style="text-align: center">Регистрация</h1>
+<hr>
+<form action="/registration" method="post">
+  <div class="form-group">
+    <label>Имя пользователя</label> <input type="text" class="form-control" name="name">
+  </div>
+  <div class="form-group">
+    <label>Электронная почта</label> <input type="email" class="form-control" name="email">
+  </div>
+  <div class="form-group">
+    <label>Номер телефона</label> <input type="text" class="form-control" name="phone">
+  </div>
+  <div class="form-group">
+    <label>Пароль</label> <input type="password" class="form-control" name="password">
+  </div>
+  <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+  <button type="submit" style="width: 100%" class="btn btn-dark">Зарегистрироваться</button>
+</form>
+<div th:if="${errorMessage}">
+  <h2 style="color: red">Этот email уже занят!</h2>
+</div>
+</body>
+</html>
