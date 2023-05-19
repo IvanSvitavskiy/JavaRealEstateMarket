@@ -3,10 +3,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-<h1>RealEstate</h1>
+<h1>RealEstate | <a th:unless="${user.email}" href="/login">Войти</a></h1>
+<div th:if="${user.email}">
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="submit" value="Выйти"/>
+    </form>
+</div>
+
 <form action="/" method="get">
     Поиск по названию объявления: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>
@@ -18,18 +24,21 @@
         <td><a th:href="'/building/' + ${b.id}">Подробнее...</a></td>
     </tr>
 </table>
-<h3>Создать новый товар</h3>
-<form action="/building/create" method="post" enctype="multipart/form-data">
-    Название объявления: <input type="text" name="title"/><br><br>
-    Описание объявления: <input type="text" name="description"/><br><br>
-    Цена: <input type="number" name="price"/><br><br>
-    Город: <input type="text" name="city"/><br><br>
-    Адрес: <input type="text" name="address"/><br><br>
-    Владелец: <input type="text" name="owner"/><br><br>
-    Первая фотография: <input type="file" name="file1"/><br><br>
-    Вторая фотография: <input type="file" name="file2"/><br><br>
-    Третья фотография: <input type="file" name="file3"/><br><br>
-    <input type="submit" value="Добавить объявление"/>
-</form>
+<div th:if="${user.email}">
+    <h3>Создать новый товар</h3>
+    <form action="/building/create" method="post" enctype="multipart/form-data">
+        Название объявления: <input type="text" name="title"/><br><br>
+        Описание объявления: <input type="text" name="description"/><br><br>
+        Цена: <input type="number" name="price"/><br><br>
+        Город: <input type="text" name="city"/><br><br>
+        Адрес: <input type="text" name="address"/><br><br>
+        Владелец: <input type="text" name="owner"/><br><br>
+        Первая фотография: <input type="file" name="file1"/><br><br>
+        Вторая фотография: <input type="file" name="file2"/><br><br>
+        Третья фотография: <input type="file" name="file3"/><br><br>
+        <input th:value="${_csrf.token}" type="hidden" name="_csrf">
+        <input type="submit" value="Добавить объявление"/>
+     </form>
+</div>
 </body>
 </html>

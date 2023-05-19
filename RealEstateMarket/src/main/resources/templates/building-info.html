@@ -18,9 +18,12 @@
 <b>Цена: </b><a th:text="${building.price}"></a><br>
 <b>Город: </b><a th:text="${building.city}"></a><br>
 <b>Адрес: </b><a th:text="${building.address}"></a><br>
-<b>Владелец: </b><a th:text="${building.owner}"></a><br>
-<form th:action="'/building/delete/' + ${building.id}" method="post">
-    <input type="submit" value="Удалить объявление"/>
-</form>
+<b>Владелец: </b><a th:text="${building.user.getEmail()}"></a><br>
+<div th:if="${building.user.getEmail().equals(user.email)} == true">
+    <form th:action="'/building/delete/' + ${building.id}" method="post">
+        <input type="submit" value="Удалить объявление"/>
+    </form>
+</div>
+
 </body>
 </html>
