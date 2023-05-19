@@ -60,7 +60,7 @@ public class User implements UserDetails {
 
     @Getter
     @Setter
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Building> buildings = new ArrayList<>();
     private LocalDateTime createdDate;
 

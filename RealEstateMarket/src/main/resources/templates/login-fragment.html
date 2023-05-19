@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1 style="text-align: center">Авторизация</h1>
+<hr>
+<form action="/login" method="post">
+  <div class="form-group">
+    <label>Электронная почта</label> <input type="email" name="username" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Пароль</label> <input type="password" name="password" class="form-control">
+  </div>
+  <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+  <button type="submit" style="width: 100%" class="btn btn-dark">Войти</button>
+</form>
+<hr>
+<h2>Нет аккаунта RealEstate? <a href="/registration">Зарегистрируйся!</a></h2>
+</body>
+</html>

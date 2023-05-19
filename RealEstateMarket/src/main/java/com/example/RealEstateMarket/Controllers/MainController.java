@@ -1,6 +1,7 @@
 package com.example.RealEstateMarket.Controllers;
 
 import com.example.RealEstateMarket.Models.Building;
+import com.example.RealEstateMarket.Models.User;
 import com.example.RealEstateMarket.Services.BuildingService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class MainController {
         model.addAttribute("building", b);
         model.addAttribute("images", b.getImages());
         model.addAttribute("user", buildingService.getUserByPrincipal(principal));
+        model.addAttribute("authorProduct", b.getUser());
         return "building-info";
     }
 
@@ -48,5 +50,13 @@ public class MainController {
     public String delBuilding(@PathVariable Long id) {
         buildingService.delBuilding(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/my/buildings")
+    public String userBuildings(Principal principal, Model model) {
+        User user = buildingService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("buildings", user.getBuildings());
+        return "my-buildings";
     }
 }

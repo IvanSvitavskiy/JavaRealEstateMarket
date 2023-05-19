@@ -43,7 +43,6 @@ public class Building {
     @Column(name = "city")
     private String city;
 
-    @Getter
     @Setter
     @Column(name = "address")
     private String address;
@@ -73,5 +72,12 @@ public class Building {
     public void connectImageToBuilding(Image image) {
         image.setBuilding(this);
         images.add(image);
+    }
+
+    public String getAddress(){
+        if(address == null){
+            return "";
+        }
+        return address;
     }
 }
