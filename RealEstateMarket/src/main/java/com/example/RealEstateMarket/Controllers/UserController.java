@@ -40,8 +40,9 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/user/{user}")
-    public String userInfo(@PathVariable("user") User user, Model model) {
+    @GetMapping("/user/{id}")
+    public String userInfo(@PathVariable Long id, Model model) {
+        User user = userService.getUser(id);
         model.addAttribute("user", user);
         model.addAttribute("buildings", user.getBuildings());
         return "user-info";
