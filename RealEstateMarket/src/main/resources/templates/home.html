@@ -11,6 +11,9 @@
         <input type="hidden" name="_csrf" th:value="${_csrf.token}">
         <input type="submit" value="Выйти"/>
     </form>
+    <div th:if="${user.isAdmin()}">
+        <a href="/admin">Панель администратора</a>
+    </div>
 </div>
 
 <form action="/" method="get">
@@ -21,18 +24,17 @@
     <tr th:each="b : ${buildings}">
         <td th:text="${b.title}"></td>
         <td th:text="${b.price}">$</td>
-        <td><a th:href="'/building/' + ${b.id}">Подробнее...</a></td>
+        <td><a th:href="'/building/check/' + ${b.id}">Подробнее...</a></td>
     </tr>
 </table>
 <div th:if="${user.email}">
-    <h3>Создать новый товар</h3>
+    <h3>Создать новое объявление</h3>
     <form action="/building/create" method="post" enctype="multipart/form-data">
         Название объявления: <input type="text" name="title"/><br><br>
         Описание объявления: <input type="text" name="description"/><br><br>
         Цена: <input type="number" name="price"/><br><br>
         Город: <input type="text" name="city"/><br><br>
         Адрес: <input type="text" name="address"/><br><br>
-        Владелец: <input type="text" name="owner"/><br><br>
         Первая фотография: <input type="file" name="file1"/><br><br>
         Вторая фотография: <input type="file" name="file2"/><br><br>
         Третья фотография: <input type="file" name="file3"/><br><br>

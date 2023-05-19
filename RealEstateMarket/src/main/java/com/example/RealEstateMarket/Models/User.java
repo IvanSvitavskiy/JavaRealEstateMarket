@@ -16,7 +16,7 @@ public class User implements UserDetails {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -72,6 +72,10 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
+    }
+
+    public boolean isAdmin(){
+        return roles.contains(Role.ROLE_ADMIN);
     }
 
     @Override
