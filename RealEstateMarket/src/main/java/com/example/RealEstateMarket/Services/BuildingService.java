@@ -24,7 +24,6 @@ public class BuildingService {
     private final UserRepository userRepository;
 
     public List<Building> getAllBuildings(String title){
-        System.out.println(title);
         if(title != null && !title.isEmpty()){
             return buildingRepository.findByTitle(title);
         }

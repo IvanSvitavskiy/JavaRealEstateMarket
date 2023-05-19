@@ -27,7 +27,7 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping("/building/{id}")
+    @GetMapping("/building/check/{id}")
     public String buildingInformation(@PathVariable Long id, Model model, Principal principal) {
         Building b = buildingService.getBuilding(id);
         model.addAttribute("building", b);

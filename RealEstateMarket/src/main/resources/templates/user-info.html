@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>RealEstate</title>
+</head>
+<body>
+<h1>RealEstate</h1><hr>
+<h4 th:text="'Объявления пользователя ' + ${user.name}"></h4>
+<b th:text="'Номер телефона: ' + ${user.phone}"></b>
+<table>
+    <tr th:each="b : ${buildings}">
+        <td th:text="${b.title}"></td>
+        <td th:text="${b.price}">$</td>
+        <td><a th:href="'/building/check/' + ${b.id}">Подробнее...</a></td>
+    </tr>
+</table>
+</body>
+</html>
