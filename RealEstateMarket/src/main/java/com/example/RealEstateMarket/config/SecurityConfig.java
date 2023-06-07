@@ -1,3 +1,6 @@
+/**
+ * Конфигурационный класс для настройки безопасности приложения.
+ */
 package com.example.RealEstateMarket.config;
 
 import com.example.RealEstateMarket.Services.CustomUserDetailService;
@@ -17,8 +20,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @AllArgsConstructor
 public class SecurityConfig {
 
+    /**
+     * Сервис пользователей.
+     */
     private final CustomUserDetailService userDetailService;
 
+    /**
+     * Метод настройки доступа.
+     *
+     * @param http - HttpSecurity объект для настройки фильтра безопасности.
+     * @return SecurityFilterChain объект.
+     * @throws Exception - исключение при настройке фильтра безопасности.
+     */
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -38,12 +51,22 @@ public class SecurityConfig {
         return http.build();
     }
 
-
+    /**
+     * Метод шифрования пароля.
+     *
+     * @param auth - AuthenticationManagerBuilder объект для настройки.
+     * @throws Exception - исключение при настройке AuthenticationManagerBuilder.
+     */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService)
                 .passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * Метод настройки PasswordEncoder.
+     *
+     * @return объект PasswordEncoder.
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(8);

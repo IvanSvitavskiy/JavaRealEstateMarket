@@ -1,3 +1,6 @@
+/**
+ * Контроллер для работы с изображениями.
+ */
 package com.example.RealEstateMarket.Controllers;
 
 import com.example.RealEstateMarket.Models.Image;
@@ -15,10 +18,20 @@ import java.io.ByteArrayInputStream;
 @RestController
 @RequiredArgsConstructor
 public class ImageController {
+
+    /**
+     * Репозиторий для работы с изображениями.
+     */
     private final ImageRepository imageRepository;
 
+    /**
+     * Метод для получения изображения по его идентификатору.
+     *
+     * @param id - идентификатор изображения.
+     * @return объект ResponseEntity с данными изображения.
+     */
     @GetMapping("/images/{id}")
-    private ResponseEntity<?> getImageById(@PathVariable Long id){
+    private ResponseEntity<?> getImageById(@PathVariable Long id) {
         Image image = imageRepository.findById(id).orElse(null);
         return ResponseEntity.ok().header("fileName", image.getFileName())
                 .contentType(MediaType.valueOf(image.getType()))
